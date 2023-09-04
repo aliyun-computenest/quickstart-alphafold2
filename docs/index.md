@@ -11,15 +11,16 @@ AlphaFold2是DeepMind制造的深度学习模型，用于蛋白质结构预测�
 
 AlphaFold2社区版在计算巢部署的费用主要涉及：
 
-- ehpc费用
+- 弹性高性能计算集群（EHPC）费用
+- 文件系统（NAS）费用
 - 流量带宽费用
-
 
 ## 部署架构
 <img src="1.png" width="1500" height="700" align="bottom"/>
 
 - 部署由一个ehpc集群组成，ehpc集群中包括1台manager节点和多台compute节点
 - manager和compute节点都部署在ecs上，其中compute节点包含gpu卡
+- 服务使用nas-cpfs构建高性能共享文件系统
 
 ## 参数说明
 | 参数组         | 参数项      | 说明                                                                     |
