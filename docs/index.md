@@ -61,7 +61,7 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
    ![image.png](4.png)
 
 3. 确认订单完成后同意服务协议并点击**立即创建**
-   进入部署阶段。部署会用时几个小时，下载数据会比较慢，下载输入的日志存放在/root/download.log中
+   进入部署阶段。部署会用时几个小时，下载数据会比较慢，下载输出的日志存放在/root/download.log中
     ![image.png](3.png)
 
 4. 等待下载数据完毕后就可以开始使用服务。可以到[CASP14](https://www.predictioncenter.org/casp14/targetlist.cgi)
