@@ -7,6 +7,21 @@
 
 AlphaFold2是DeepMind制造的深度学习模型，用于蛋白质结构预测。本文介绍了通过阿里云ehpc Nvidia GPU规格和计算巢快速部署AlphaFold2。
 
+## 前提条件
+
+部署AlphaFold2社区版服务实例，需要对部分阿里云资源进行访问和创建操作。因此您的账号需要包含如下资源的权限。
+  **说明**：当您的账号是RAM账号时，才需要添加此权限。
+
+  | 权限策略名称                          | 备注                     |
+  |---------------------------------|------------------------|
+  | AliyunECSFullAccess             | 管理云服务器服务（ECS）的权限       |
+  | AliyunEHPCFullAccess            | 管理弹性高性能计算（EHPC）的权限     |
+  | AliyunNASFullAccess             | 管理文件存储（NAS）的权限         |
+  | AliyunVPCFullAccess             | 管理专有网络（VPC）的权限         |
+  | AliyunROSFullAccess             | 管理资源编排服务（ROS）的权限       |
+  | AliyunComputeNestUserFullAccess | 管理计算巢服务（ComputeNest）的用户侧权限 |
+
+
 ## 计费说明
 
 AlphaFold2社区版在计算巢部署的费用主要涉及：
@@ -46,17 +61,18 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
    ![image.png](4.png)
 
 3. 确认订单完成后同意服务协议并点击**立即创建**
-   进入部署阶段。![image.png](3.png)
+   进入部署阶段。部署会用时几个小时，下载数据会比较慢，下载输出的日志存放在/root/download.log中
+    ![image.png](3.png)
 
-4. 部署成功后登录ehpc集群下载alphafold2用到的数据，下载需要1-2天，可以查看/root/download.log下的信息确认下载情况。下载数据约2T，会走公网流量，建议改成按带宽付费方式以节约些成本。命令如下：
-
-    ```
-    /home/alphafold/scripts/download_all_data.sh /home/data > /root/download.log &
-    ```
-   
-5. 下载完数据后就可以开始使用，可以到[CASP14](https://www.predictioncenter.org/casp14/targetlist.cgi)
+4. 等待下载数据完毕后就可以开始使用服务。可以到[CASP14](https://www.predictioncenter.org/casp14/targetlist.cgi)
    中拷贝T1050的[示例数据](https://www.predictioncenter.org/casp14/target.cgi?target=T1050&view=sequence)
-   存放到/home/inputs/T1050.fasta中，然后到ehpc控制台任务管理执行命令。![image.png](5.png)
+   存放到/home/inputs/T1050.fasta中，然后 ssh 到ehpc manager节点执行命令让 qmgr 允许 root 执行:
+    
+    ```
+    /usr/local/pbs/bin/qmgr -c "set server acl_roots = root"
+    ```
+
+5. 然后到ehpc控制台任务管理执行命令。![image.png](5.png)
 
     ```
     -- /usr/bin/python3 /home/alphafold/docker/run_docker.py --fasta_paths=/home/inputs/T1050.fasta --max_template_date=2020-05-14--data_dir=/home/data --docker_image_name=alphafold:2.0 --output_dir=/home/outputs
