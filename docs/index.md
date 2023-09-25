@@ -75,7 +75,7 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
 5. 然后到ehpc控制台任务管理执行命令。![image.png](5.png)
 
     ```
-    -- /usr/bin/python3 /home/alphafold/docker/run_docker.py --fasta_paths=/home/inputs/T1050.fasta --max_template_date=2020-05-14--data_dir=/home/data --docker_image_name=alphafold:2.0 --output_dir=/home/outputs
+    -- /usr/bin/python3 /home/alphafold/docker/run_docker.py --fasta_paths=/home/inputs/T1050.fasta --max_template_date=2020-05-14 --data_dir=/home/data --docker_image_name=alphafold:2.0 --output_dir=/home/outputs
     ```
 
 6. 查看ehpc任务状态等待几个小时后发现
