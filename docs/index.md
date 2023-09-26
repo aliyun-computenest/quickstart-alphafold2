@@ -43,11 +43,14 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
 | 服务实例        | 服务实例名称   | 长度不超过64个字符，必须以英文字母开头，可包含数字、英文字母、短划线（-）和下划线（_）                          |
 |             | 地域       | 服务实例部署的地域                                                              |
 |             | 付费类型     | 资源的计费类型：按两付费和包年包月                                                      |
-| EHPC集群配置    | 集群登录密码   | 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*-+=&#124;{}[]:;'<>,.?/ 中的特殊符号） | Ehpc部署模式 | Tiny，Simple，Standard                          |
+| EHPC集群配置    | 集群登录密码   | 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*-+=&#124;{}[]:;'<>,.?/ 中的特殊符号） |
+              | Ehpc部署模式 | Tiny，Simple，Standard                          |
 |             | 计算节点实例类型 | 可用区下可以使用的计算节点规格                                                        |
 |             | 计算节点数量   | 计算节点数量, 可选值: 1-99                                                      |
 |             | 登录节点实例类型 | 可用区下可以使用的登录节点规格                                                        |
 |             | 管控节点数量   | 管控节点数量, 可选值: 1,2,4                                                     |
+| EHPC登录配置  | 登录用户名    |                                                                              |
+|              | 登录用户密码  | 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*-+=&#124;{}[]:;'<>,.?/ 中的特殊符号）|
 | 网络配置        | 可用区      | ECS实例所在可用区                                                             |
 |             | VPC ID   | 资源所在VPC                                                                |
 |             | 交换机ID    | 资源所在交换机                                                                |
@@ -66,21 +69,18 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
 
 4. 等待下载数据完毕后就可以开始使用服务。可以到[CASP14](https://www.predictioncenter.org/casp14/targetlist.cgi)
    中拷贝T1050的[示例数据](https://www.predictioncenter.org/casp14/target.cgi?target=T1050&view=sequence)
-   存放到/home/inputs/T1050.fasta中，然后 ssh 到ehpc manager节点执行命令让 qmgr 允许 root 执行:
-    
-    ```
-    /usr/local/pbs/bin/qmgr -c "set server acl_roots = root"
-    ```
+   存放到/home/alphafold/T1050.fasta中，通过ehpc控制台ssh登录，输入用户名密码登录。![image.png](9.png)
+   
 
-5. 然后到ehpc控制台任务管理执行命令。![image.png](5.png)
+6. 然后到ehpc控制台任务管理执行命令。![image.png](5.png)
 
     ```
-    -- /usr/bin/python3 /home/alphafold/docker/run_docker.py --fasta_paths=/home/inputs/T1050.fasta --max_template_date=2020-05-14 --data_dir=/home/data --docker_image_name=alphafold:2.0 --output_dir=/home/outputs
+    -- /usr/bin/python3 /home/share/alphafold/docker/run_docker.py --fasta_paths=/home/alphafold/T1050.fasta --max_template_date=2020-05-14 --data_dir=/home/data --docker_image_name=alphafold:latest --output_dir=/home/alphafold
     ```
 
-6. 查看ehpc任务状态等待几个小时后发现
+7. 查看ehpc任务状态等待几个小时后发现
    /home/outputs目录生成了对应的结果，拷贝出rank_0.pdb。![image.png](6.png)
 
-7. 在蛋白质结构预测结果[网站](https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html)
+8. 在蛋白质结构预测结果[网站](https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html)
    中打开rank_0.pdb，会看到对应的蛋白质结构。![image.png](7.png)![image.png](8.png)
 
