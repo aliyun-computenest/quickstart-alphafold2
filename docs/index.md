@@ -44,7 +44,7 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
 |             | 地域       | 服务实例部署的地域                                                              |
 |             | 付费类型     | 资源的计费类型：按两付费和包年包月                                                      |
 | EHPC集群配置    | 集群登录密码   | 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*-+=&#124;{}[]:;'<>,.?/ 中的特殊符号） |
-              | Ehpc部署模式 | Tiny，Simple，Standard                          |
+|             | Ehpc部署模式 | Tiny，Simple，Standard                          |
 |             | 计算节点实例类型 | 可用区下可以使用的计算节点规格                                                        |
 |             | 计算节点数量   | 计算节点数量, 可选值: 1-99                                                      |
 |             | 登录节点实例类型 | 可用区下可以使用的登录节点规格                                                        |
@@ -79,7 +79,7 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
     ```
 
 7. 查看ehpc任务状态等待几个小时后发现
-   /home/outputs目录生成了对应的结果，拷贝出rank_0.pdb。![image.png](6.png)
+   /home/alphafold/目录生成了对应的日志(T1050.e1)和结果(T1050文件夹)，进入T1050文件夹拷贝出rank_0.pdb。![image.png](6.png)
 
 8. 在蛋白质结构预测结果[网站](https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html)
    中打开rank_0.pdb，会看到对应的蛋白质结构。![image.png](7.png)![image.png](8.png)
