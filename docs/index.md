@@ -73,10 +73,10 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
    
 
 6. 然后到ehpc控制台任务管理执行命令。![image.png](5.png)
-
-    ```
+   
+```bash
     -- /usr/bin/python3 /home/share/alphafold/docker/run_docker.py --fasta_paths=/home/alphafold/T1050.fasta --max_template_date=2020-05-14 --data_dir=/home/data --docker_image_name=alphafold:latest --output_dir=/home/alphafold
-    ```
+```
 
 7. 查看ehpc任务状态等待几个小时后发现
    /home/alphafold/目录生成了对应的日志(T1050.e1)和结果(T1050文件夹)，进入T1050文件夹拷贝出rank_0.pdb。![image.png](6.png)
