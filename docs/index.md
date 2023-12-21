@@ -69,10 +69,10 @@ AlphaFold2社区版在计算巢部署的费用主要涉及：
 
 4. 等待下载数据完毕后就可以开始使用服务。可以到[CASP14](https://www.predictioncenter.org/casp14/targetlist.cgi)
    中拷贝T1050的[示例数据](https://www.predictioncenter.org/casp14/target.cgi?target=T1050&view=sequence)
-   存放到/home/alphafold/T1050.fasta中，通过ehpc控制台ssh登录，输入用户名密码登录。![image.png](9.png)
+   存放到/home/alphafold/T1050.fasta中，通过ehpc[控制台登录集群](https://help.aliyun.com/zh/e-hpc/user-guide/log-on-to-a-cluster?spm=a2c4g.11186623.0.0.3dff56fdLxmQbl#section-wl8-aio-0wu)，输入用户名密码登录。![image.png](9.png)
    
 
-6. 然后到ehpc控制台任务管理执行命令。![image.png](5.png)
+5. 然后到ehpc控制台任务管理执行命令。![image.png](5.png)
    
 ```bash
     -- /usr/bin/python3 /home/share/alphafold/docker/run_docker.py --fasta_paths=/home/alphafold/T1050.fasta --max_template_date=2020-05-14 --data_dir=/home/data --docker_image_name=alphafold:latest --output_dir=/home/alphafold
